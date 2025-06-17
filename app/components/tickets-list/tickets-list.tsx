@@ -1,8 +1,21 @@
 import Ticket from '@/app/components/ticket/ticket';
 import styles from '@/app/components/tickets-list/tickets-list.module.scss';
 import Link from 'next/link';
+import { createClient } from '@/app/utils/supabase/server';
 
-export default function TicketsList() {
+interface ITicket {
+  id: number;
+  created_at: Date;
+  name: string;
+  description: string;
+}
+
+export default async function TicketsList() {
+  const supabase = await createClient();
+  const { data: tickets } = await supabase.from('tickets').select();
+
+  const listItems = (tickets as ITicket[]).map((ticket) => <Ticket key={ticket.id} name={ticket.name} description={ticket.description}></Ticket>);
+
   return (
     <>
       <div className="flex justify-end">
@@ -11,9 +24,7 @@ export default function TicketsList() {
         </button>
       </div>
 
-      <div className="flex justify-beetwen mt-12">
-        <Ticket name="Learn Next JS" description="It costs me a lifetime"></Ticket>
-      </div>
+      <div className="flex justify-beetwen mt-12">{listItems}</div>
     </>
   );
 }

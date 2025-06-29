@@ -9,13 +9,13 @@ export const createTicket = async (formData: CreateTicketSchemaType): Promise<{ 
 
   try {
     const { data, error } = createTicketSchema.safeParse(formData);
-    await supabase.from('tickets').insert(data);
-
+    await supabase.from('tickets-board').insert(data);
     if (error) {
-      return { error: `The issue has occurred: ${error}` };
+      const fieldErrors = error.flatten().fieldErrors;
+      return { error: `Error has been occurred: ${fieldErrors.name} \n ${fieldErrors.description}` };
     }
 
-    revalidatePath('/tickets-list');
+    revalidatePath('/tickets-board-board');
   } catch (error) {
     console.log(error);
     return { error: 'Something went wrong' };

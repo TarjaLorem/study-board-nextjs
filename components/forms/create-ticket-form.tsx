@@ -22,16 +22,15 @@ export default function CreateTicketForm() {
   const submitForm = async (data: CreateTicketSchemaType) => {
     reset();
     const response = await createTicket(data);
-    console.log(response);
+
     if (response?.error) {
-      toast.error('Something went wrong');
+      toast.error(response?.error);
     }
 
     if (response?.message) {
       toast.success(response?.message);
+      redirect('/tickets-list');
     }
-
-    redirect('/tickets-list');
   }
 
   return (

@@ -3,7 +3,7 @@
 import { createClient } from '@/lib/supabase/server';
 import ITicket from '@/types/interfaces/tickets';
 
-export const getTickets = async (): Promise<ITicket[] | unknown> => {
+export const getTickets = async (): Promise<ITicket[]> => {
   const supabase = await createClient()
 
   try {
@@ -11,6 +11,6 @@ export const getTickets = async (): Promise<ITicket[] | unknown> => {
 
     return tickets as ITicket[];
   } catch (error) {
-    return error;
+    throw error;
   }
 }

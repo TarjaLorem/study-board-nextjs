@@ -11,15 +11,16 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`${inter.className} antialiased`}>
-        <Header/>
-        <Suspense fallback={ <div className="text-lg text-center">LOADING...</div> }>
-          <main className="p-6">
-            {children}
-            <Toaster position={"top-center"} />
-          </main>
-        </Suspense>
-        </body>
+    <body className={`${inter.className} antialiased`}>
+    <Header/>
+    <Suspense fallback={<div className="text-lg text-center">LOADING...</div>}>
+      <main className="p-6">
+        {children}
+        <Toaster position={"top-center"}/>
+      </main>
+    </Suspense>
+    <div id="modal-root"></div>
+    </body>
     </html>
   );
 }

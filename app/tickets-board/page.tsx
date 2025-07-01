@@ -1,4 +1,4 @@
-import TicketsBoard from '@/components/tickets-board/tickets-board';
+import TicketsBoard from '@/components/tickets/tickets-board/tickets-board';
 
 export default function TicketBoardPage() {
   return (

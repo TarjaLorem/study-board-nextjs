@@ -1,4 +1,4 @@
-import Ticket from '@/components/ticket/ticket';
+import Ticket from '@/components/tickets/ticket/ticket';
 import ITicket from '@/types/interfaces/tickets';
 import { getTickets } from '@/utils/actions/get-tickets';
 

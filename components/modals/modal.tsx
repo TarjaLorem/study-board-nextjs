@@ -19,11 +19,19 @@ export default function Modal({ children }:
   return (
     <>
       {isClient ? ( createPortal(
-        <div>
-          <div>
-            <Link href="/">Close</Link>
-            {/*<button onClick={onCloseAction}>Close</button>*/}
-            {children}
+        <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50">
+          <div className="bg-white rounded-lg shadow-xl max-w-2xl w-full mx-4 relative">
+            <div className="flex justify-end p-4">
+              <Link 
+                href="/" 
+                className="text-gray-600 hover:text-gray-900 font-bold text-xl"
+              >
+                ✕
+              </Link>
+            </div>
+            <div className="px-6 pb-6">
+              {children}
+            </div>
           </div>
         </div>,
         document.getElementById('modal-root') as HTMLElement

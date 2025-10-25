@@ -29,7 +29,7 @@ export default function CreateTicketForm() {
 
     if (response?.message) {
       toast.success(response?.message);
-      redirect('/tickets-list');
+      redirect('/');
     }
   }
 
